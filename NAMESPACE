@@ -1,0 +1,6 @@
+export(
+"whiteningMatrix", "whiten", "cca", "scca"
+)
+import("corpcor")
+import("stats")
+

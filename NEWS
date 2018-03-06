@@ -1,0 +1,12 @@
+       
+
+           RELEASE HISTORY OF THE "whitening" PACKAGE
+
+
+Version 1.0.0:
+
+- Public release on 3 March 2018.
+
+  This package contains functions for computing whitening matrices, for whitening
+  data, and for (shrinkage) estimation of canonical correlations and directions.
+

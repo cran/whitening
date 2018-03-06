@@ -1,0 +1,13 @@
+33b7d7fb3c1a1cb648d7081f06ab6eef *DESCRIPTION
+0459f8cf352e89b88428753f7db986bd *NAMESPACE
+f5993edd1f69b8af6141b4a45ffc65f7 *NEWS
+e6745d6cf30532290d3349012a93884d *R/scca.R
+c1e3d49bc83d336ae31ac9bc9f512cc3 *R/whiteningMatrix.R
+34d4cecf5503d531129b9931aaef12ad *inst/doc/NCI60.R
+bc7b08435c986d7a25db18cf7d979ee6 *inst/doc/index.html
+6151f8004159c9646eb48cb94b0403e9 *inst/doc/nutrimouse.R
+591e666adaeec31f06576ca45b41c6b5 *inst/doc/optimal-whitening-table2.R
+21d5c55045f0fee8ade2e3364482399f *man/scca.Rd
+0eb542b1c1d6ba4b5aa08b1422888491 *man/whitening-internal.Rd
+450b32fc979f8e51ebd382fe784bcf06 *man/whitening.package.Rd
+052dde38d6d312c0b941c294ea7c3a8f *man/whiteningMatrix.Rd
