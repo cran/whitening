@@ -35,7 +35,7 @@ whiteningMatrix = function(Sigma,
     lambda = eSigma$values
     
     # fix sign ambiguity in eigenvectors by making U positive diagonal
-    U = sweep(U, 2, sign(diag(U)), "*")
+    U = sweep(U, 2, sign(diag(U)), "*") # U %*% diag( sign(diag(U)) )
 
     W = diag(1/sqrt(lambda)) %*% t(U)
     if (method=="ZCA") W = U %*% W
@@ -55,7 +55,7 @@ whiteningMatrix = function(Sigma,
     theta = eR$values
 
     # fix sign ambiguity in eigenvectors by making G positive diagonal
-    G = sweep(G, 2, sign(diag(G)), "*")
+    G = sweep(G, 2, sign(diag(G)), "*") # G %*% diag( sign(diag(G)) )
 
     W = diag(1/sqrt(theta)) %*% t(G) %*% diag(1/sqrt(v))
     if (method=="ZCA-cor") W = G %*% W

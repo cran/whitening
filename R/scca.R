@@ -1,6 +1,6 @@
-### scca.R  (2018-03-03)
+### scca.R  (2018-07-09)
 ###
-###    Estimate canonical correlations and direction
+###    Estimate canonical correlations, canonical directions, and loading
 ###
 ### Copyright 2018 Korbinian Strimmer
 ###
@@ -27,9 +27,6 @@
 cca = function(X, Y, scale=TRUE)
 {
   out = scca(X, Y, lambda.cor=0, scale=scale, verbose=FALSE)
-  out["lambda.cor.estimated"] = NULL
-  out["lambda.cor"] = NULL
-
 
   return(out)
 }
@@ -58,30 +55,32 @@ scca = function(X, Y, lambda.cor, scale=TRUE, verbose=TRUE)
 
  
   # memory and time-saving way of computing cross products of shrinkage correlation matrix
-  # RX^{-1/2} %*% m
-  isqrtLeft = function(x, m, lambda.cor)
+  # RX^{alpha} %*% m
+  cpLeft = function(x, m, alpha, lambda.cor)
   {
-    a = crossprod.powcor.shrink(x, m, alpha=-1/2, lambda=lambda.cor, verbose = FALSE)
+    a = crossprod.powcor.shrink(x, m, alpha=alpha, lambda=lambda.cor, verbose = FALSE)
     attr(a, "class") = NULL
     attr(a, "lambda.estimated") = NULL
     attr(a, "lambda") = NULL
     return(a)
   }
 
-  # m %*% RX^{-1/2}
-  isqrtRight = function(x, m, lambda.cor)
-    t( isqrtLeft(x, t(m), lambda.cor ) )
+  # m %*% RX^{alpha}
+  cpRight = function(x, m, alpha, lambda.cor)
+    t( cpLeft(x, t(m), alpha, lambda.cor ) )
+
 
   # shrinkage estimate of cross-correlation
   RXY = (1-lambda.cor)*cor(X, Y)
 
-  # adjusted cross-correlations pxq    K = isqrtRXX %*% RXY %*% isqrtRYY 
-  # this avoids to compute the full matrices isqrtRXX and isqrtRYY
-  K = isqrtRight(Y, isqrtLeft(X, RXY, lambda.cor), lambda.cor)  
+  # adjusted cross-correlations pxq    K = RXX^(-1/2) %*% RXY %*% isqrtRYY^(-1/2) 
+  # this avoids to compute the full matrices RXX^(-1/2) and RYY^(-1/2)
+  K = cpRight(Y, cpLeft(X, RXY, -1/2, lambda.cor), -1/2, lambda.cor)  
 
 
   # decompose adjusted cross-correlations K into rotation matrices and canonical correlation
-  svd.out = fast.svd(K) 
+  #svd.out = fast.svd(K) 
+  svd.out = svd(K) 
   QX = t(svd.out$u) # t(U) mxp
   QY = t(svd.out$v) # t(V) mxq
   lambda = svd.out$d  # canonical correlations (singular values of K)  m
@@ -90,8 +89,8 @@ scca = function(X, Y, lambda.cor, scale=TRUE, verbose=TRUE)
   # fix sign ambiguity by making QX and QY positive diagonal
   sQX = sign(diag(QX)) # m
   sQY = sign(diag(QY)) # m
-  QX = sweep(QX, 1, sQX, "*")
-  QY = sweep(QY, 1, sQY, "*")
+  QX = sweep(QX, 1, sQX, "*") # diag(sQX) %*% QX 
+  QY = sweep(QY, 1, sQY, "*") # diag(sQY) %*% QY 
   lambda = lambda*sQX*sQY # some canonical correlations may now be negative
   # SVD decomposition is still valid: sum( (K - t(QX) %*% diag(lambda) %*% QY)^2 )
  
@@ -99,10 +98,10 @@ scca = function(X, Y, lambda.cor, scale=TRUE, verbose=TRUE)
   # compute canonical directions
 
   # canonical directions for X  (rows contain directions) = t(Xcoef)
-  WX = isqrtRight(X, QX, lambda.cor) # QX %*% isqrtRXX (mxp)
+  WX = cpRight(X, QX, -1/2, lambda.cor) # QX %*% RXX^(-1/2) (mxp)
 
   # canonical directions for Y  (rows contain directions) = t(Ycoef)
-  WY = isqrtRight(Y, QY, lambda.cor) # QY %*% isqrtRYY (mxq)
+  WY = cpRight(Y, QY, -1/2, lambda.cor) # QY %*% RYY^(-1/2) (mxq)
 
 
   # bring back scale into the canonical directions if data should not be scaled
@@ -117,7 +116,25 @@ scca = function(X, Y, lambda.cor, scale=TRUE, verbose=TRUE)
   colnames(WX) = colnames(X)
   colnames(WY) = colnames(Y)
 
-  return( list(K=K, lambda=lambda, WX=WX, WY=WY, scale=scale,
+  # compute loadings
+
+  # loadings for X
+  PhiX = cpRight(X, QX, 1/2, lambda.cor) # QX %*% RXX^(-1/2) (mxp)
+
+  # loadings for Y
+  PhiY = cpRight(Y, QY, 1/2, lambda.cor) # QY %*% RYY^(-1/2) (mxq)
+
+  # bring back scale into the loadings if data should not be scaled
+  if( !scale)
+  {
+    WX = sweep(PhiX, 2, SDX, "*")
+    WY = sweep(PhiY, 2, SDY, "*")
+  }
+
+  colnames(PhiX) = colnames(X)
+  colnames(PhiY) = colnames(Y)
+
+  return( list(K=K, lambda=lambda, WX=WX, WY=WY, PhiX=PhiX, PhiY=PhiY, scale=scale,
           lambda.cor.estimated=lambda.cor.estimated,
           lambda.cor=lambda.cor) )
 }

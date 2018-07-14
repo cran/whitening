@@ -2,11 +2,19 @@
 
            RELEASE HISTORY OF THE "whitening" PACKAGE
 
+Version 1.1.0:
+- The functions scca() and cca() now also compute the 
+  loadings for X and Y.
+- The data sets "lusc" and "nutrimouse" are now included.
+- Updated nutrimouse data analysis script, and added R code
+  for example analysis of lusc data. 
+- Two functions loadplot() and corplot() have been added.
 
 Version 1.0.0:
-
 - Public release on 3 March 2018.
 
-  This package contains functions for computing whitening matrices, for whitening
-  data, and for (shrinkage) estimation of canonical correlations and directions.
+
+This package contains functions for computing whitening matrices, 
+for whitening data, and for (shrinkage) estimation of canonical 
+correlations and directions.
 

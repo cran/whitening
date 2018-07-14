@@ -1,6 +1,7 @@
 export(
-"whiteningMatrix", "whiten", "cca", "scca"
+"whiteningMatrix", "whiten", "cca", "scca", "corplot", "loadplot"
 )
 import("corpcor")
 import("stats")
 
+importFrom("graphics", "box", "image", "layout", "mtext", "par")
