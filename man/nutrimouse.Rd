@@ -13,7 +13,7 @@ The nutrimouse dataset is a collection of gene expression and lipid measurements
 collected in a nutrigenomic study in the mouse studying 40 animals by Martin et al. (2007).
 }
 \details{This data set is used to illustrate CCA-based data integration
- in Jendoubi and Strimmer (2018) and is also described in Gonzalez et al. (2008).
+ in Jendoubi and Strimmer (2019) and is also described in Gonzalez et al. (2008).
 }
 
 \format{
@@ -37,7 +37,8 @@ see \code{\link[CCA]{nutrimouse}}.
 Gonzalez, I., Dejean, S., Martin, P.G.P,  Baccini, A.
 CCA: an R package to extend canonical correlation analysis. J. Statist. Software 23:1--13 (2008)
 
-Jendoubi, T., Strimmer, K.: A whitening approach to probabilistic canonical correlation analysis for omics data integration. (2018) \url{https://arxiv.org/abs/1802.03490}
+Jendoubi, T., Strimmer, K.: A whitening approach to probabilistic canonical correlation analysis for omics data integration. BMC Bioinformatics 20:15 
+<DOI:10.1186/s12859-018-2572-9>
 
 Martin, P.G.P., Guillou, H., Lasserre, F., Dejean, S., Lan, A., Pascussi, J.-M., Cristobal, M.S., Legrand, P., Besse, P., Pineau, T.: Novel aspects of PPARalpha-mediated regulation of lipid and xenobiotic metabolism revealed
 through a multigenomic study. Hepatology 54, 767--777 (2007)

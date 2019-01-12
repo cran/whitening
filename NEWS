@@ -2,6 +2,12 @@
 
            RELEASE HISTORY OF THE "whitening" PACKAGE
 
+
+Version 1.1.1:
+- References to Kessy et al (2018) and Jendoubi and Strimmer (2019) updated.
+- whiten() now has "center" option.
+- New data set "forina1986" added (extended version of UCI wine data set)
+
 Version 1.1.0:
 - The functions scca() and cca() now also compute the 
   loadings for X and Y.

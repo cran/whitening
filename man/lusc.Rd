@@ -13,7 +13,7 @@ A preprocessed sample of gene expression and methylation data as well as selecte
  }
 
 \details{This data set is used to illustrate CCA-based data integration
- in Jendoubi and Strimmer (2018) and also described in Wan et al. (2016).
+ in Jendoubi and Strimmer (2019) and also described in Wan et al. (2016).
 }
 
 \format{
@@ -37,7 +37,8 @@ The data were retrieved from TCGA (Kandoth et al. 2014) using the TCGA2STAT tool
 }
 
 \references{
-Jendoubi, T., Strimmer, K.: A whitening approach to probabilistic canonical correlation analysis for omics data integration. (2018) \url{https://arxiv.org/abs/1802.03490}
+Jendoubi, T., Strimmer, K.: A whitening approach to probabilistic canonical correlation analysis for omics data integration. BMC Bioinformatics 20:15 
+<DOI:10.1186/s12859-018-2572-9>
 
 Kandoth, C., McLellan, M.D., Vandin, F., Ye, K., Niu, B., Lu, C., Xie, M., andJ. F. McMichael, Q.Z., Wyczalkowski, M.A., Leiserson, M.D.M., Miller, C.A., Welch, J.S., Walter, M.J., Wendl, M.C., Ley, T.J., Wilson, R.K., Raphael, B.J., Ding, L.: Mutational landscape and significance across 12 major cancer types.
 Nature 502, 333--339 (2013). <DOI:10.1038/nature12634>

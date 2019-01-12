@@ -6,7 +6,7 @@
 \usage{
 whiteningMatrix(Sigma, method=c("ZCA", "PCA", "Cholesky",
                                 "ZCA-cor", "PCA-cor"))
-whiten(X, method=c("ZCA", "PCA", "Cholesky", "ZCA-cor", "PCA-cor"))
+whiten(X, center=FALSE, method=c("ZCA", "PCA", "Cholesky", "ZCA-cor", "PCA-cor"))
 }
 \arguments{
   \item{Sigma}{Covariance matrix.}
@@ -14,6 +14,8 @@ whiten(X, method=c("ZCA", "PCA", "Cholesky", "ZCA-cor", "PCA-cor"))
   \item{method}{Determines the type of whitening.}
 
   \item{X}{Data matrix, with samples in rows and variables in columns.}
+
+  \item{center}{Center columns to mean zero.}
 }
 
 \description{
@@ -64,7 +66,7 @@ whiten(X, method=c("ZCA", "PCA", "Cholesky", "ZCA-cor", "PCA-cor"))
 
 \references{
 Kessy, A., A. Lewin, and K. Strimmer. 2018.
-Optimal whitening and decorrelation. The American Statistician.
+Optimal whitening and decorrelation. The American Statistician. 72: 309-314.
 \url{https://doi.org/10.1080/00031305.2016.1277159}
 
 }

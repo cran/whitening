@@ -49,9 +49,9 @@ cca(X, Y, scale=TRUE)
 
 \details{
    
-The canonical directions in this function are scaled in such a way that they correspond to whitening matrices - see Jendoubi and Strimmer (2018) for details. Note that the sign convention for the canonical directions employed here  allows purposely for both positive and negative canonical correlations.
+The canonical directions in this function are scaled in such a way that they correspond to whitening matrices - see Jendoubi and Strimmer (2019) for details. Note that the sign convention for the canonical directions employed here  allows purposely for both positive and negative canonical correlations.
 
-The function \code{scca} uses some clever matrix algebra to avoid computation of full correlation matrices, and hence can be applied to high-dimensional data sets - see Jendoubi and Strimmer (2018) for details.
+The function \code{scca} uses some clever matrix algebra to avoid computation of full correlation matrices, and hence can be applied to high-dimensional data sets - see Jendoubi and Strimmer (2019) for details.
 
 \code{cca} it is a shortcut for running \code{scca} with \code{lambda.cor=0} and \code{verbose=FALSE}.
 
@@ -69,7 +69,9 @@ If \eqn{X} or \eqn{Y} contains only a single variable the correlation-adjusted c
 
 
 \references{
-Jendoubi, T., and K. Strimmer 2018. A whitening approach to probabilistic canonical correlation analysis for omics data integration. \url{https://arxiv.org/abs/1802.03490}
+Jendoubi, T., and K. Strimmer 2019. A whitening approach to probabilistic canonical correlation analysis for omics data integration. 
+BMC Bioinformatics 20: 15.
+<DOI:10.1186/s12859-018-2572-9>
 
 Zuber, V., and K. Strimmer. 2011.  High-dimensional regression and 
 variable selection using CAR scores.  Statist. Appl. Genet. Mol. Biol. 10: 34.

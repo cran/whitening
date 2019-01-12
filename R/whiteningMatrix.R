@@ -1,8 +1,8 @@
-### whiteningMatrix.R  (2018-03-03)
+### whiteningMatrix.R  (2019-01-09)
 ###
 ###    Compute whitening matrix
 ###
-### Copyright 2018 Korbinian Strimmer
+### Copyright 2018-19 Korbinian Strimmer
 ###
 ###
 ### This file is part of the `whitening' library for R and related languages.
@@ -65,13 +65,15 @@ whiteningMatrix = function(Sigma,
 }
 
 # whiten data using empirical covariance matrix
-whiten = function(X, method=c("ZCA", "PCA", "Cholesky", "ZCA-cor", "PCA-cor"))
+whiten = function(X, center=FALSE, method=c("ZCA", "PCA", "Cholesky", "ZCA-cor", "PCA-cor"))
 {
     method = match.arg(method)
 
     S = cov(X)
     W = whiteningMatrix(S, method=method)
     Z = tcrossprod(X, W) # whitened data
+
+    if(center) Z = sweep(Z, 2, colMeans(Z))
 
     return(Z)
 }
