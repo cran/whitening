@@ -1,35 +1,33 @@
-\name{whiteningMatrix}
-\alias{whiteningMatrix}
+\name{whiten}
+\alias{whiten}
 
-\title{Compute Whitening Matrix}
+\title{Whiten Data Matrix}
 \usage{
-whiteningMatrix(Sigma, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor", 
+whiten(X, center=FALSE, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor",
     "Chol-prec", "Chol-cov", "Cholesky"))
 }
 \arguments{
-  \item{Sigma}{Covariance matrix.}
-  
+  \item{X}{Data matrix, with samples in rows and variables in columns.}
+ 
+ \item{center}{Center columns to mean zero.}
+
   \item{method}{Determines the type of whitening transformation.}
 
 }
 
 \description{
-  \code{whiteningMatrix} computes the whitening matrix \eqn{W}.
 
+  \code{whiten} whitens a data matrix \eqn{X} using the empirical covariance matrix \eqn{cov(X)} as basis for computing the whitening transformation.
 
 }
 
 \value{
-  \code{whiteningMatrix} returns a square whitening matrix \eqn{W}.  
+
+  \code{whiten} returns the whitened data matrix \eqn{Z = X W'}.
 
 }
 
 \details{
-
-  Whitening is a linear transformation \eqn{z = W x} where the whitening matrix satisfies the constraint
-  \eqn{W'W = Sigma^{-1}}  where \eqn{Sigma = Cov(x)}.
-
-   This function implements various natural whitening transformations discussed in  Kessy, Lewin, and Strimmer (2018).
 
    The following six different whitening approaches can be selected:
 
@@ -51,15 +49,12 @@ whiteningMatrix(Sigma, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor",
    In both PCA and PCA-cor whitening there is a sign-ambiguity in the eigenvector matrices. In order to resolve the sign-ambiguity we use eigenvector matrices with a positive diagonal.  This has the effect to make cross-correlations and cross-correlations positive diagonal for PCA and PCA-cor.
 
    For details see Kessy, Lewin, and Strimmer (2018).
- 
-   Canonical correlation analysis (CCA) can also be understood as a
-   special form form of whitening.
 }
 
 \author{
   Korbinian Strimmer (\url{http://www.strimmerlab.org}) with Agnan Kessy and Alex Lewin.
 }
-\seealso{\code{\link{whiteningCrossCov}}, \code{\link{scca}}.}
+\seealso{\code{\link{whiteningMatrix}}.}
 
 
 \references{
@@ -85,14 +80,10 @@ d = ncol(X) # 4
 n = nrow(X) # 150
 colnames(X) # "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"
 
-# estimate covariance
-S = cov(X)
+# whitened data
+Z.ZCAcor = whiten(X, method="ZCA-cor")
 
-# ZCA-cor whitening matrix
-W.ZCAcor = whiteningMatrix(S, method="ZCA-cor")
-
-# check of constraint on whitening matrix
-crossprod(W.ZCAcor)
-solve(S)
+# check covariance matrix
+zapsmall( cov(Z.ZCAcor) )
 }
 \keyword{multivariate}

@@ -1,6 +1,6 @@
-### whiteningMatrix.R  (2020-12-05)
+### whiteningCrossCov.R  (2020-12-05)
 ###
-###    Compute whitening matrix
+###    Compute cross-covariance matrix
 ###
 ### Copyright 2018-20 Korbinian Strimmer
 ###
@@ -22,10 +22,13 @@
 ### MA 02111-1307, USA
 
 
-makePositivDiagonal = function(U) return( sweep(U, 2, sign(diag(U)), "*") ) # U %*% diag( sign(diag(U)) ) 
+# create whitening cross-covariance matrix Phi from given covariance matrix Sigma
 
-# create whitening matrix W from given covariance matrix Sigma
-whiteningMatrix = function(Sigma, 
+# t(Phi) = W^{-1}
+
+#makePositivDiagonal = function(U) return( sweep(U, 2, sign(diag(U)), "*") ) # U %*% diag( sign(diag(U)) ) 
+
+whiteningCrossCov = function(Sigma, 
   method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor", "Chol-prec", "Chol-cov", "Cholesky"))
 {
   method=match.arg(method)
@@ -38,7 +41,7 @@ whiteningMatrix = function(Sigma,
     U = eSigma$vectors
     lambda = eSigma$values
     
-    W = U %*% diag(1/sqrt(lambda)) %*% t(U)
+    Phi = U %*% diag(sqrt(lambda)) %*% t(U)
   }
 
   if(method=="PCA")
@@ -50,20 +53,20 @@ whiteningMatrix = function(Sigma,
     # fix sign ambiguity in eigenvectors by making U positive diagonal
     U = makePositivDiagonal(U)
 
-    W = diag(1/sqrt(lambda)) %*% t(U)
+    Phi = diag(sqrt(lambda)) %*% t(U) 
   }
 
   if(method=="Chol-prec")
   {
-     W = chol(solve(Sigma))
+     Phi = t(solve(chol(solve(Sigma))))
   }
 
   if(method=="Chol-cov")
   {
-     W = solve(t(chol(Sigma)))
+     Phi = chol(Sigma)      
   }
 
-  if(method=="ZCA-cor")
+  if(method=="ZCA-cor")# TODO
   {
     v = diag(Sigma)
     R = cov2cor(Sigma)
@@ -71,7 +74,7 @@ whiteningMatrix = function(Sigma,
     G = eR$vectors
     theta = eR$values
 
-    W = G %*% diag(1/sqrt(theta)) %*% t(G) %*% diag(1/sqrt(v))
+    Phi = G %*% diag(sqrt(theta)) %*% t(G) %*% diag(sqrt(v))
   }
 
   if(method=="PCA-cor")
@@ -85,9 +88,9 @@ whiteningMatrix = function(Sigma,
     # fix sign ambiguity in eigenvectors by making G positive diagonal
     G = makePositivDiagonal(G)
 
-    W = diag(1/sqrt(theta)) %*% t(G) %*% diag(1/sqrt(v))
+    Phi = diag(sqrt(theta)) %*% t(G) %*% diag(sqrt(v))
   }
 
-  return (W)
+  return (Phi)
 }
 

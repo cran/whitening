@@ -1,35 +1,32 @@
-\name{whiteningMatrix}
-\alias{whiteningMatrix}
+\name{whiteningCrossCov}
+\alias{whiteningCrossCov}
 
-\title{Compute Whitening Matrix}
+\title{Compute Whitening Cross-Covariance Matrix}
 \usage{
-whiteningMatrix(Sigma, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor", 
+whiteningCrossCov(Sigma, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor", 
     "Chol-prec", "Chol-cov", "Cholesky"))
+
 }
 \arguments{
   \item{Sigma}{Covariance matrix.}
   
   \item{method}{Determines the type of whitening transformation.}
-
 }
 
 \description{
-  \code{whiteningMatrix} computes the whitening matrix \eqn{W}.
-
+ \code{whiteningCrossCov} computes the cross-covariance \eqn{Phi=Cov(z, x)} between the whitened and the original variables.
 
 }
 
 \value{
-  \code{whiteningMatrix} returns a square whitening matrix \eqn{W}.  
+  \code{whiteningCrossCov} returns a square cross-covariance matrix \eqn{Phi}.   
 
 }
 
 \details{
-
-  Whitening is a linear transformation \eqn{z = W x} where the whitening matrix satisfies the constraint
-  \eqn{W'W = Sigma^{-1}}  where \eqn{Sigma = Cov(x)}.
-
-   This function implements various natural whitening transformations discussed in  Kessy, Lewin, and Strimmer (2018).
+   \eqn{Phi=Cov(z, x)} is the cross-covariance matrix between the whitened and the original variables.
+    It satisfies \eqn{Phi' Phi = Sigma}.   The transpose of the cross-covariance matrix is the inverse of the whitening matrix so that \eqn{Phi' = W^{-1}}.  The cross-covariance matrix is therefore relevant in inverse
+whitening transformations (=coloring transformations)  \eqn{x = Phi' z}.
 
    The following six different whitening approaches can be selected:
 
@@ -51,15 +48,12 @@ whiteningMatrix(Sigma, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor",
    In both PCA and PCA-cor whitening there is a sign-ambiguity in the eigenvector matrices. In order to resolve the sign-ambiguity we use eigenvector matrices with a positive diagonal.  This has the effect to make cross-correlations and cross-correlations positive diagonal for PCA and PCA-cor.
 
    For details see Kessy, Lewin, and Strimmer (2018).
- 
-   Canonical correlation analysis (CCA) can also be understood as a
-   special form form of whitening.
 }
 
 \author{
-  Korbinian Strimmer (\url{http://www.strimmerlab.org}) with Agnan Kessy and Alex Lewin.
+  Korbinian Strimmer (\url{http://www.strimmerlab.org}).
 }
-\seealso{\code{\link{whiteningCrossCov}}, \code{\link{scca}}.}
+\seealso{\code{\link{whiteningMatrix}}.}
 
 
 \references{
@@ -91,8 +85,15 @@ S = cov(X)
 # ZCA-cor whitening matrix
 W.ZCAcor = whiteningMatrix(S, method="ZCA-cor")
 
-# check of constraint on whitening matrix
-crossprod(W.ZCAcor)
-solve(S)
+# ZCA-cor cross-covariance matrix
+Phi.ZCAcor = whiteningCrossCov(S, method="ZCA-cor")
+
+# check constraint of cross-covariance matrix
+crossprod(Phi.ZCAcor)
+S
+
+# transpose of cross-covariance matrix is equal to the inverse whitening matrix
+t(Phi.ZCAcor)
+solve(W.ZCAcor)
 }
 \keyword{multivariate}

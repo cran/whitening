@@ -1,6 +1,6 @@
 Package: whitening
-Version: 1.1.1
-Date: 2019-01-12
+Version: 1.2.0
+Date: 2020-12-06
 Title: Whitening and High-Dimensional Canonical Correlation Analysis
 Author: Korbinian Strimmer, Takoua Jendoubi, Agnan Kessy, Alex Lewin
 Maintainer: Korbinian Strimmer <strimmerlab@gmail.com>
@@ -15,8 +15,8 @@ Description: Implements the whitening methods (ZCA, PCA, Cholesky,
  "A whitening approach to probabilistic canonical correlation analysis for omics
  data integration", <doi:10.1186/s12859-018-2572-9>.
 License: GPL (>= 3)
-URL: http://strimmerlab.org/software/whitening/
-Packaged: 2019-01-12 16:25:52 UTC; strimmer
+URL: http://www.strimmerlab.org/software/whitening/
+Packaged: 2020-12-06 10:06:55 UTC; strimmer
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2019-01-12 17:10:03 UTC
+Date/Publication: 2020-12-06 10:40:02 UTC

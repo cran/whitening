@@ -2,6 +2,10 @@
 
            RELEASE HISTORY OF THE "whitening" PACKAGE
 
+Version 1.2.0:
+- new whitening options "Chol.cov" and "Chol.prec" added.
+- new function whiteningCrossCov() to compute the cross-covariance matrix
+  for a given whitening transformation.
 
 Version 1.1.1:
 - References to Kessy et al (2018) and Jendoubi and Strimmer (2019) updated.

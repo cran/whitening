@@ -56,7 +56,7 @@ A list containing the following components:
 
 \source{
 The original data matrix is available from 
-\url{https://www.researchgate.net/profile/Michele_Forina/publication/271908647_Wines_MForina_CArmanino_MCastino_MUbigli_Multivariate_data_analysis_as_discriminating_method_of_the_origin_of_wines_Vitis_25_189-201_1986/}.
+\url{https://www.researchgate.net/publication/271908647_Wines_MForina_CArmanino_MCastino_MUbigli_Multivariate_data_analysis_as_discriminating_method_of_the_origin_of_wines_Vitis_25_189-201_1986}.
 }
 
 \references{

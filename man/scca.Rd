@@ -58,14 +58,14 @@ The function \code{scca} uses some clever matrix algebra to avoid computation of
 If \code{scale=FALSE} the standard deviations needed for the canonical directions are estimated 
 by  \code{apply(X, 2, sd)} and \code{apply(X, 2, sd)}.
 
-If \eqn{X} or \eqn{Y} contains only a single variable the correlation-adjusted cross-correlations \eqn{K} reduce to the CAR score (see \code{\link[care]{carscore}}) described in Strimmer and Zuber (2011).
+If \eqn{X} or \eqn{Y} contains only a single variable the correlation-adjusted cross-correlations \eqn{K} reduce to the CAR score (see function \code{carscore} in the \code{care} package) described in Strimmer and Zuber (2011).
 
 }
 
 \author{
-  Korbinian Strimmer (\url{http://strimmerlab.org}) with Takoua Jendoubi.
+  Korbinian Strimmer (\url{http://www.strimmerlab.org}) with Takoua Jendoubi.
 }
-\seealso{\code{\link[stats]{cancor}} and \code{\link[care]{carscore}}.}
+\seealso{\code{\link[stats]{cancor}} and \code{\link{whiteningMatrix}}.}
 
 
 \references{

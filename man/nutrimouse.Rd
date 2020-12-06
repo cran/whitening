@@ -29,8 +29,7 @@ A list containing the following components:
 }
 
 \source{
-The original data are available in the CCA R package by Gonzalez et al. (2008), 
-see \code{\link[CCA]{nutrimouse}}.
+The original data are available in the \code{CCA} package by Gonzalez et al. (2008), see their function \code{nutrimouse}.
 }
 
 \references{
