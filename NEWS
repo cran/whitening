@@ -2,6 +2,11 @@
 
            RELEASE HISTORY OF THE "whitening" PACKAGE
 
+
+Version 1.3.0:
+- update URLs
+- new function simOrtho() to simulate random orthogonal matrices.
+
 Version 1.2.0:
 - new whitening options "Chol.cov" and "Chol.prec" added.
 - new function whiteningCrossCov() to compute the cross-covariance matrix

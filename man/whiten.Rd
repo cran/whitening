@@ -52,7 +52,7 @@ whiten(X, center=FALSE, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor",
 }
 
 \author{
-  Korbinian Strimmer (\url{http://www.strimmerlab.org}) with Agnan Kessy and Alex Lewin.
+  Korbinian Strimmer (\url{https://strimmerlab.github.io}) with Agnan Kessy and Alex Lewin.
 }
 \seealso{\code{\link{whiteningMatrix}}.}
 
@@ -60,8 +60,7 @@ whiten(X, center=FALSE, method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor",
 \references{
 Kessy, A., A. Lewin, and K. Strimmer. 2018.
 Optimal whitening and decorrelation. The American Statistician. 72: 309-314.
-\url{https://doi.org/10.1080/00031305.2016.1277159}
-
+<DOI:10.1080/00031305.2016.1277159>
 }
 
 

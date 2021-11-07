@@ -16,7 +16,7 @@ cca(X, Y, scale=TRUE)
   \item{scale}{Determines whether canonical directions are computed for standardized or raw data.
                Note that if data are not standardized the canonical directions contain the scale
                of the variables.}
-  \item{verbose}{Report shrinkage intensities-}
+  \item{verbose}{Report shrinkage intensities.}
 }
 
 \description{
@@ -63,7 +63,7 @@ If \eqn{X} or \eqn{Y} contains only a single variable the correlation-adjusted c
 }
 
 \author{
-  Korbinian Strimmer (\url{http://www.strimmerlab.org}) with Takoua Jendoubi.
+  Korbinian Strimmer (\url{https://strimmerlab.github.io}) with Takoua Jendoubi.
 }
 \seealso{\code{\link[stats]{cancor}} and \code{\link{whiteningMatrix}}.}
 

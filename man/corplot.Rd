@@ -31,7 +31,7 @@ loadplot(cca.out, numScores)
 }
 
 \author{
-  Korbinian Strimmer (\url{http://www.strimmerlab.org}).
+  Korbinian Strimmer (\url{https://strimmerlab.github.io}).
 
   Part of the plot code was adapted from the \code{img.matcor} function 
   in the \code{CCA} package and from the \code{image.plot} function in the \code{fields} package.

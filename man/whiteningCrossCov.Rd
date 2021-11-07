@@ -51,7 +51,7 @@ whitening transformations (=coloring transformations)  \eqn{x = Phi' z}.
 }
 
 \author{
-  Korbinian Strimmer (\url{http://www.strimmerlab.org}).
+  Korbinian Strimmer (\url{https://strimmerlab.github.io}).
 }
 \seealso{\code{\link{whiteningMatrix}}.}
 
@@ -59,7 +59,7 @@ whitening transformations (=coloring transformations)  \eqn{x = Phi' z}.
 \references{
 Kessy, A., A. Lewin, and K. Strimmer. 2018.
 Optimal whitening and decorrelation. The American Statistician. 72: 309-314.
-\url{https://doi.org/10.1080/00031305.2016.1277159}
+<DOI:10.1080/00031305.2016.1277159>
 
 }
 

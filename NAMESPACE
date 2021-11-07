@@ -1,5 +1,5 @@
 export(
-"whiteningMatrix", "whiten", "whiteningCrossCov", "cca", "scca", "corplot", "loadplot"
+"whiteningMatrix", "whiten", "whiteningCrossCov", "cca", "scca", "corplot", "loadplot", "simOrtho"
 )
 import("corpcor")
 import("stats")
