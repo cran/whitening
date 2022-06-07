@@ -1,8 +1,8 @@
-### whiteningCrossCov.R  (2020-12-05)
+### whiteningCrossCov.R  (2022-06-01)
 ###
 ###    Compute cross-covariance matrix
 ###
-### Copyright 2018-20 Korbinian Strimmer
+### Copyright 2018-22 Korbinian Strimmer
 ###
 ###
 ### This file is part of the `whitening' library for R and related languages.
@@ -22,75 +22,19 @@
 ### MA 02111-1307, USA
 
 
-# create whitening cross-covariance matrix Phi from given covariance matrix Sigma
+# create whitening cross-covariance matrix Phi.old from given covariance matrix Sigma
 
-# t(Phi) = W^{-1}
-
-#makePositivDiagonal = function(U) return( sweep(U, 2, sign(diag(U)), "*") ) # U %*% diag( sign(diag(U)) ) 
+# note that t(Phi.old) = W^{-1}
 
 whiteningCrossCov = function(Sigma, 
-  method=c("ZCA", "ZCA-cor", "PCA", "PCA-cor", "Chol-prec", "Chol-cov", "Cholesky"))
+  method=c("ZCA", "ZCA-cor",
+           "PCA", "PCA-cor", 
+           "Cholesky"))
 {
-  method=match.arg(method)
+  .Deprecated("whiteningLoadings")  # notify user to use whiteningLoadings instead.
+  
+  Phi.old = t( getPhiPsiW(Sigma=Sigma, method=method, returnPhiPsi=TRUE)$Phi )
 
-  if(method=="Cholesky") method="Chol-prec"
-
-  if(method=="ZCA")
-  {
-    eSigma = eigen(Sigma, symmetric=TRUE) 
-    U = eSigma$vectors
-    lambda = eSigma$values
-    
-    Phi = U %*% diag(sqrt(lambda)) %*% t(U)
-  }
-
-  if(method=="PCA")
-  {
-    eSigma = eigen(Sigma, symmetric=TRUE) 
-    U = eSigma$vectors
-    lambda = eSigma$values
-    
-    # fix sign ambiguity in eigenvectors by making U positive diagonal
-    U = makePositivDiagonal(U)
-
-    Phi = diag(sqrt(lambda)) %*% t(U) 
-  }
-
-  if(method=="Chol-prec")
-  {
-     Phi = t(solve(chol(solve(Sigma))))
-  }
-
-  if(method=="Chol-cov")
-  {
-     Phi = chol(Sigma)      
-  }
-
-  if(method=="ZCA-cor")# TODO
-  {
-    v = diag(Sigma)
-    R = cov2cor(Sigma)
-    eR = eigen(R, symmetric=TRUE) 
-    G = eR$vectors
-    theta = eR$values
-
-    Phi = G %*% diag(sqrt(theta)) %*% t(G) %*% diag(sqrt(v))
-  }
-
-  if(method=="PCA-cor")
-  {
-    v = diag(Sigma)
-    R = cov2cor(Sigma)
-    eR = eigen(R, symmetric=TRUE) 
-    G = eR$vectors
-    theta = eR$values
-
-    # fix sign ambiguity in eigenvectors by making G positive diagonal
-    G = makePositivDiagonal(G)
-
-    Phi = diag(sqrt(theta)) %*% t(G) %*% diag(sqrt(v))
-  }
-
-  return (Phi)
+  return (Phi.old)
 }
 

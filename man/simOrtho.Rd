@@ -3,11 +3,12 @@
 
 \title{Simulate Random Orthogonal Matrix}
 \usage{
-simOrtho(d)
+simOrtho(d, nonNegDiag = FALSE)
 }
 
 \arguments{
-  \item{d}{The dimension of the orthogonal matrix.}  
+  \item{d}{The dimension of the orthogonal matrix.} 
+  \item{nonNegDiag}{force the elements on the diagonal to be nonnegative (default: FALSE).} 
 }
 
 \description{

@@ -1,8 +1,8 @@
-### simOrtho.R  (2021-11-07)
+### simOrtho.R  (2022-05-24)
 ###
 ###    Simulate random orthogonal matrix
 ###
-### Copyright 2021 Korbinian Strimmer
+### Copyright 2021-2022 Korbinian Strimmer
 ###
 ###
 ### This file is part of the `whitening' library for R and related languages.
@@ -32,7 +32,7 @@
 #
 # See Section 3 page 404
 
-simOrtho = function(d)
+simOrtho = function(d, nonNegDiag = FALSE)
 {
   A = matrix(rnorm(d*d), d, d)
 
@@ -40,9 +40,17 @@ simOrtho = function(d)
   qr.out = qr(A)  
   Q = qr.Q(qr.out)
   R = qr.R(qr.out) # upper triangular, with arbitrary signs on diagonal
- 
-  sgn = sign(diag(R))
-  #R.new = diag(sgn) %*% R  # now signs on diagonal are all positive
+
+  if (nonNegDiag)
+  {
+    sgn = sign(diag(Q))  
+  }
+  else # default
+  {
+    sgn = sign(diag(R))
+    #R.new = diag(sgn) %*% R  # now signs on diagonal are all positive 
+  }
+
   Q.new = Q %*% diag(sgn)  # adjust Q correspondingly
 
   return( Q.new ) 

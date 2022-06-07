@@ -9,7 +9,7 @@ data(forina1986)
 }
 
 \description{
-The forina1986 dataset describes 27 properties of 178 samples of wine from three 
+The \code{forina1986} dataset describes 27 properties of 178 samples of wine from three 
 grape varieties (59 Barolo, 71 Grignolino, 48 Barbera) as reported in Forina et al. (1986).   
 }
 \details{This data set contains the full set of covariates described in Forina et al. (1986) 

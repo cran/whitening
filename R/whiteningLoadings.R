@@ -1,8 +1,8 @@
-### whiten.R  (2022-05-29)
+### whiteningLoadings.R  (2022-06-02)
 ###
-###    Whitening data matrix
+###    Compute (correlation) loadings Phi and Psi
 ###
-### Copyright 2018-20 Korbinian Strimmer
+### Copyright 2018-22 Korbinian Strimmer
 ###
 ###
 ### This file is part of the `whitening' library for R and related languages.
@@ -22,24 +22,19 @@
 ### MA 02111-1307, USA
 
 
+# compute whitening loadings (cross-covariance matrix Phi)
+# and correlation loadings (cross-correlation matrix Psi)
+# from a given covariance matrix Sigma
 
-# whiten data using empirical covariance matrix
-whiten = function(X, center=FALSE, 
-     method=c("ZCA", "ZCA-cor", 
-              "PCA", "PCA-cor", 
-              "Cholesky"))
+whiteningLoadings = function(Sigma, 
+  method=c("ZCA", "ZCA-cor",
+           "PCA", "PCA-cor", 
+           "Cholesky"))
 {
-    method = match.arg(method)
+  method=match.arg(method)
 
-    S = cov(X)
-    W = whiteningMatrix(S, method=method)
-    Z = tcrossprod(X, W) # whitened data
+  PhiPsi = getPhiPsiW(Sigma, method, returnPhiPsi=TRUE) 
 
-    if(center) Z = sweep(Z, 2, colMeans(Z))
-
-    colnames(Z) = paste0("L", 1:ncol(X))
-
-    attr(Z, "method") = method
-
-    return(Z)
+  return(PhiPsi)
 }
+

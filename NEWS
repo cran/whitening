@@ -2,6 +2,21 @@
 
            RELEASE HISTORY OF THE "whitening" PACKAGE
 
+1.4.0
+
+- depends now R >= 3.5.0
+- new data set pitprops14
+- new function explainedVariation()
+- reverted back to a single Cholesky whitening procedure (as Chol-cov and Chol-prec are really
+  the same, just reversed ordering).  Default is now lower triangular loadings.
+- whiteningCrossCov() depricated.  
+- Instead whiteningLoadings() returns both loadings Phi and cross-correlation loadings Psi
+  with the columns corresponding to the latent variables
+- simOrtho() has positiveDiag option
+- whiten() and other functions now label the latent variables (L1, L2, etc)
+- whitening matrix and cross-cov matrix now also labelled (both rows and columns)
+- whitening method used now attached as method attribute
+
 
 Version 1.3.0:
 - update URLs

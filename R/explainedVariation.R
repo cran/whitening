@@ -1,8 +1,8 @@
-### whiten.R  (2022-05-29)
+### explainedVariation.R  (2022-06-01)
 ###
-###    Whitening data matrix
+###    Compute explained variation from loadings
 ###
-### Copyright 2018-20 Korbinian Strimmer
+### Copyright 2022 Korbinian Strimmer
 ###
 ###
 ### This file is part of the `whitening' library for R and related languages.
@@ -21,25 +21,7 @@
 ### Software Foundation, Inc., 59 Temple Place - Suite 330, Boston,
 ### MA 02111-1307, USA
 
+# explained variation 
+# = column sum of squares of the loadings 
+explainedVariation = function(Phi) colSums(Phi^2)  
 
-
-# whiten data using empirical covariance matrix
-whiten = function(X, center=FALSE, 
-     method=c("ZCA", "ZCA-cor", 
-              "PCA", "PCA-cor", 
-              "Cholesky"))
-{
-    method = match.arg(method)
-
-    S = cov(X)
-    W = whiteningMatrix(S, method=method)
-    Z = tcrossprod(X, W) # whitened data
-
-    if(center) Z = sweep(Z, 2, colMeans(Z))
-
-    colnames(Z) = paste0("L", 1:ncol(X))
-
-    attr(Z, "method") = method
-
-    return(Z)
-}

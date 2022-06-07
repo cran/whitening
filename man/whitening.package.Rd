@@ -28,7 +28,8 @@ Website: \url{https://strimmerlab.github.io/software/whitening/}
 \seealso{
 \code{\link{whiteningMatrix}},
 \code{\link{whiten}},
-\code{\link{whiteningCrossCov}},
+\code{\link{whiteningLoadings}},
+\code{\link{explainedVariation}},
 \code{\link{cca}}, and
 \code{\link{scca}}.
 }

@@ -9,7 +9,7 @@ data(nutrimouse)
 }
 
 \description{
-The nutrimouse dataset is a collection of gene expression and lipid measurements 
+The \code{nutrimouse} dataset is a collection of gene expression and lipid measurements 
 collected in a nutrigenomic study in the mouse studying 40 animals by Martin et al. (2007).
 }
 \details{This data set is used to illustrate CCA-based data integration

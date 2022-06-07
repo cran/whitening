@@ -3,6 +3,8 @@
 
 
 \alias{whitening-internal}
+\alias{whiteningCrossCov}
+\alias{getPhiW}
 
 
 \title{Internal whitening Functions}
